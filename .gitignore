@@ -1,1 +1,4 @@
 keys.py
+sqlite_db
+.pyc
+__pycache__
