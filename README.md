@@ -1,1 +1,1 @@
-# Incog-bot
+# Incog
