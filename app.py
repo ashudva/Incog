@@ -1,5 +1,6 @@
 import tweepy
 import time
+from os import environ, urandom
 import json
 import sqlite3
 from keys import *
@@ -36,7 +37,7 @@ GOOGLE_DISCOVERY_URL = (
 
 app = Flask(__name__)
 # secret key to sign the cookies
-app.secret_key = SECRET_KEY
+app.secret_key = environ.get("SECRET_KEY") or urandom(24)
 
 # User session management setup
 login_manager = LoginManager()
@@ -65,7 +66,7 @@ def index():
             "<div><p>Google Profile Picture:</p>"
             '<img src="{}" alt="Google profile pic"></img></div>'
             '<a class="button" href="/logout">Logout</a>'.format(
-                current_user.nameurrent_user.name, current_user.email, current_user.profile_pic
+                current_user.name, current_user.email, current_user.profile_pic
             )
         )
     else:
