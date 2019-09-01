@@ -1,4 +1,4 @@
-![Title Image](https://github.com/ashudva/Incog/blob/master/resources/Incog.jpg)
+![Title Image](https://drive.google.com/file/d/1s7CMEuH4m7FhAJq9UbhypW8yNJ27M-qg/view?usp=sharing)
 
 # Abstract
 It is a platform where the user can *share* his/her contemplation, thoughts, ideas, images or other stuff **completely anonymously**, eliminating the need of any third person i.e. Admin.
