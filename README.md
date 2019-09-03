@@ -1,5 +1,7 @@
-# Incog 
+![Info Image](resources/Incog.jpg)
 
+
+[![BCH compliance](https://bettercodehub.com/edge/badge/ashudva/Incog?branch=master&token=4bd1383f37d6b41526615771af3b2a6696777346)](https://bettercodehub.com/)  [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ashudva/Incog)
 ## Abstract
 It is a platform where the user can *share* his/her contemplation, thoughts, ideas, images or other stuff **completely anonymously**, eliminating the need of any third person i.e. Admin.
 
