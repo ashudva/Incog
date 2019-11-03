@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} Incog {% endblock %}
+
+{% block head %}
+
+<style media="screen">
+  span {
+    font-size: 20px;
+  }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<h1>Post ID: {{ id }}</h1>
+<h3>Post text: <span>{{ posts.confession }}</span></h3>
+{% if comments %}
+    <ul>
+    {% for comment in comments %}
+        <li>{{ comment }}</li>
+
+        <!-- {% if replies %}
+        <ul>
+          {% for reply in replies %}
+          <li>{{ reply }}</li>
+          {% endfor %}
+        </ul>
+        {% else %}
+            <p>No replies are available.</p>
+        {% endif %} -->
+
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No comments are available.</p>
+{% endif %}
+
+{% endblock %}
