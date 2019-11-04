@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_meta %}
+
+<meta name="description" content="Incog signin page">
+<meta name="author" content="Incog">
+{% endblock %}
+
+{% block head %}
+
+<link rel="icon" href="">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+{% endblock %}
+
+{% block title %} Incog {% endblock %}
+
+{% block body %}
+
+
+  <form action="{% url 'login' %}" class="form-signin" method="post"> {% csrf_token %}
+    <h1 class="h3 mb-3 font-weight-normal text-center">Access your account</h1>
+    {% if message == 0 %}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      Successfully <strong>Logged out!</strong>.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    {% elif message == 1 %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Invalid Credentials!</strong> Check your username or password.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    {% endif %}
+    <div class="form-group">
+      <label for="inputUsername">Username</label>
+      <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+    </div>
+    <!-- <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div> -->
+    <button class="btn btn-primary" type="submit">Sign in</button>
+    <small id="submitHelp" class="form-text text-muted">Create a new account</small>
+    <a href="{% url 'signup' %}"><button type="button" class="btn btn-dark">Register</button></a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+  </form>
+
+{% endblock %}

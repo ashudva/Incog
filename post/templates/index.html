@@ -14,27 +14,29 @@
 
 {% block body %}
 
-<h1>Post ID: {{ id }}</h1>
-<h3>Post text: <span>{{ posts.confession }}</span></h3>
-{% if comments %}
+<h3>User : {{ user.first_name }}</h3>
+<a href="{% url 'logout' %}">logout</a>
+{% for post in posts %}
+<h4>Post ID: {{ post.id }}</h4>
+<h5>Post text: <span>{{ post.confession }}</span></h5>
+{% if post.comment_set.all %}
     <ul>
-    {% for comment in comments %}
+    {% for comment in post.comment_set.all %}
         <li>{{ comment }}</li>
 
-        <!-- {% if replies %}
+        {% if comment.reply_set.all %}
         <ul>
-          {% for reply in replies %}
+          {% for reply in comment.reply_set.all %}
           <li>{{ reply }}</li>
           {% endfor %}
         </ul>
         {% else %}
             <p>No replies are available.</p>
-        {% endif %} -->
-
+        {% endif %}
     {% endfor %}
     </ul>
 {% else %}
     <p>No comments are available.</p>
 {% endif %}
-
+{% endfor %}
 {% endblock %}

@@ -1,8 +1,0 @@
-1. implement Appreciation and learn how to avoid race condition in that
-2. implement Add a new post
-3. implement Add comment
-4. implement Add reply
-5. generic views in details
-6. create different forms for getting data from the user
-7. Use decorators to restrict access to views based on the http request type
-8. redirect() - django.shortcuts

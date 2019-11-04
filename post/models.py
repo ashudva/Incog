@@ -1,45 +1,40 @@
+from django.contrib.auth.models import User
 from django.db import models
 import datetime
 from django.utils import timezone
 
-# Create your models here.
-# class post(models.Model):
-#     confession = ""
-#     comments = {
-#         "replies": 0,
-#         "appreciate": 0,
-#         "emojis": 0
-#     }
-#     owner = ""
-#     reacts = {"appreciate": 0, "emojis": 0}
-
 class Post(models.Model):
-    confession              = models.CharField('Confession', max_length=4000)
-    heading                 = models.CharField('Heading', max_length=4000)
-    time                    = models.DateTimeField('Time published')
-    appreciations           = models.PositiveIntegerField('Appreciations', default=0)
-    views                   = models.PositiveIntegerField('Views', default=0)
-    # import user from main or user model
-    # author = models.Foreignkey(user.id, on_delete=models.CASCADE)
+    author                  = models.ForeignKey(User, on_delete=models.CASCADE)
+    confession              = models.TextField()
+    heading                 = models.CharField(max_length=4000)
+    pub_date                = models.DateTimeField('Date published')
+    mod_date                = models.DateField('Date modified')
+    appreciations           = models.PositiveIntegerField(default=0)
+    views                   = models.PositiveIntegerField(default=0)
+    n_comments              = models.IntegerField(default=0)
 
     def was_pub_recently(self):
         # return true if post is published before one day
-        return timezone.now() - datetime.timedelta(days=1) <= self.post_time
+        return timezone.now() - datetime.timedelta(days=1) <= self.pub_date
+
+    # @classmethod
+    # def create(cls, confession, heading):
+    #     post =
+
 
     def __str__(self):
-        return f"{self.id} - {self.confession} ----- {self.time}, {self.appreciations}"
+        return f"{self.id} - {self.heading}"
 
 
 # Using tree nested comments will be implemented
 # Below class is base class for comments and replies
 class commentBase(models.Model):
-
+    author                  = models.ForeignKey(User, on_delete=models.CASCADE)
     text                    = models.CharField(max_length=400)
-    time                    = models.DateTimeField('Timestamp')
-    appreciations           = models.PositiveIntegerField('Appreciations', default=0)
-    downvotes               = models.PositiveIntegerField('Downvotes', default=0)
-    # import user from main or user model
-    # author = models.Foreignkey(user, on_delete=models.CASCADE)
+    pub_date                = models.DateTimeField()
+    mod_date                = models.DateField('Date modified')
+    appreciations           = models.PositiveIntegerField(default=0)
+    downvotes               = models.PositiveIntegerField(default=0)
 
     class Meta:
         abstract = True
@@ -47,10 +42,10 @@ class commentBase(models.Model):
 
 class Comment(commentBase):
     parent_post             = models.ForeignKey(Post, on_delete=models.CASCADE)
-    replies                 = models.PositiveIntegerField('Replies', default=0)
+    n_replies               = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f"{self.id}. Comment: {self.text} ----- {self.time}, Appreciations: {self.appreciations}, Downvotes: {self.downvotes} replies: {self.replies}"
+        return f"{self.id}. Comment: {self.text}, Replies: {self.n_replies}"
 
 class Reply(commentBase):
     parent_comment          = models.ForeignKey(Comment, on_delete=models.CASCADE)
@@ -59,4 +54,4 @@ class Reply(commentBase):
         verbose_name_plural = 'Replies'
 
     def __str__(self):
-        return f"{self.id}. Reply: {self.text}, at: {self.time}, Appreciations: {self.appreciations}, Downvotes:{self.downvotes}"
+        return f"{self.id}. Reply: {self.text}"

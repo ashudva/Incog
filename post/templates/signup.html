@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block extra_meta %}
+{% load static %}
+<meta name="description" content="Incog signin page">
+<meta name="author" content="Incog">
+{% endblock %}
+
+{% block head %}
+<link rel="icon" href="">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block title %} Incog {% endblock %}
+
+{% block body %}
+  <form class="form-signin" method="POST">
+    <h1 class="h3 mb-3 font-weight-normal text-center">Create a new account</h1>
+    <div class="form-group">
+      <label for="inputEmail">Email address</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="inputUsername">Username</label>
+      <input type="text" id="inputUsername" class="form-control" placeholder="Enter Your Username" required autofocus>
+      <small id="usernameHelp" class="form-text text-muted">Alphanumeric , _ , @ , + , . , - are allowed</small>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-dark">Register</button>
+    <small id="emailHelp" class="form-text text-muted">login if already have an account</small>
+    <a href="{% url 'login' %}"><button class="btn btn-primary" type="button">Sign in</button></a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+  </form>
+{% endblock %}
