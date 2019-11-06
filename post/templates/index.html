@@ -14,7 +14,7 @@
 
 {% block body %}
 
-<h3>User : {{ user.first_name }}</h3>
+<h3>User : {{ user.username }}</h3>
 <a href="{% url 'logout' %}">logout</a>
 {% for post in posts %}
 <h4>Post ID: {{ post.id }}</h4>

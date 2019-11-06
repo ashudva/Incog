@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Comment, Reply
 # Create your views here.
 
-@login_required(login_url = '/login/')
-def post_view(request):
+@login_required(login_url = 'accounts/login/')
+def index_view(request):
     # Get list of all posts
     p = get_list_or_404(Post)
     context = {
