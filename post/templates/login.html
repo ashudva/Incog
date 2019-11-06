@@ -17,10 +17,12 @@
 
 {% block body %}
 
+<form action="{% url 'login' %}" class="form-signin" method="post"> {% csrf_token %}
+  <h1 class="h3 mb-3 font-weight-normal text-center">Access your account</h1>
 
-  <form action="{% url 'login' %}" class="form-signin" method="post"> {% csrf_token %}
-    <h1 class="h3 mb-3 font-weight-normal text-center">Access your account</h1>
-    {% if message == 0 %}
+{% if not message == None %}
+
+    {% if message == 1 %}
 
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       Successfully <strong>Logged out!</strong>.
@@ -29,7 +31,7 @@
       </button>
     </div>
 
-    {% elif message == 1 %}
+    {% elif message == 0 %}
 
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong>Invalid Credentials!</strong> Check your username or password.
@@ -38,7 +40,17 @@
       </button>
     </div>
 
+    {% elif message == 2 %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Login In!</strong> first please.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
     {% endif %}
+  {% endif %}
     <div class="form-group">
       <label for="inputUsername">Username</label>
       <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
@@ -53,7 +65,7 @@
       </label>
     </div> -->
     <button class="btn btn-primary" type="submit">Sign in</button>
-    <small id="submitHelp" class="form-text text-muted">Create a new account</small>
+    <small id="submitHelp" class="form-text text-muted">Or</small>
     <a href="{% url 'signup' %}"><button type="button" class="btn btn-dark">Register</button></a>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
   </form>

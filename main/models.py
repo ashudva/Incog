@@ -4,11 +4,11 @@ from django.db import models
 class Profile(models.Model):
     # username, first_name, last_name, email will be taken from User model
     # profile_picture, add multiple options like favs, interests, follow, followers option to added later
-    owner               = models.ForeignKey(User, on_delete = models.CASCADE)
+    owner               = models.OneToOneField(User, on_delete = models.CASCADE)
     PRIVATE             = 'PR'
     PUBLIC              = 'PB'
     COMMUNITIES         = 'CM'
-    visibility        = [
+    visibility          = [
         (PRIVATE, 'private'),
         (PUBLIC, 'public'),
         (COMMUNITIES, 'Communities'),
@@ -18,11 +18,12 @@ class Profile(models.Model):
         choices         = visibility,
         default         = PUBLIC,
     )
-    dream               = models.CharField(max_length=600, blank=True)
-    ambition            = models.CharField(max_length=600, blank=True)
-    bio                 = models.CharField(max_length=600, blank=True)
-    status              = models.CharField(max_length=600, blank=True)
-    philosophy          = models.CharField(max_length=400, blank=True)
+    birth_date          = models.DateField(blank=True, null=True)
+    dream               = models.TextField(max_length=400, blank=True)
+    ambition            = models.TextField(max_length=400, blank=True)
+    bio                 = models.TextField(max_length=400, blank=True)
+    status              = models.CharField(max_length=200, blank=True)
+    philosophy          = models.TextField(max_length=200, blank=True)
 
     def __str__(self):
         return f"Profile of {self.owner}"
