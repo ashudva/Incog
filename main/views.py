@@ -17,7 +17,7 @@ def login_view(request, newcontext = {}):
             login(request, user)
             return redirect('index')
         else:
-            return render(request, 'login.html', {"message": 1})
+            return render(request, 'login.html', {"message": 0})
 
     else:
         return render(request, 'login.html', context)

@@ -1,49 +1,102 @@
 {% extends "base.html" %}
-{% block extra_meta %}
 {% load static %}
+{% block extra_meta %}
+
 <meta name="description" content="Incog signin page">
 <meta name="author" content="Incog">
 {% endblock %}
 
-{% block head %}
-<link rel="icon" href="">
-<link rel="stylesheet" href="{% static 'css/login.css' %}">
-{% endblock %}
-
 {% block title %} Incog {% endblock %}
 
+{% block head %}
+
+<link rel="icon" href="">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+{% endblock %}
+
 {% block body %}
-  <form class="form-signin" method="POST"> {% csrf_token %}
-    <h1 class="h3 mb-3 font-weight-normal text-center">Create a new account</h1>
-    <!-- <div class="form-group">
-      <label for="inputEmail">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div> -->
 
-    {% if message == 0 %}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'images/img-01.png' %}" alt="Hover mouse to tilt image">
+				</div>
+				<form class="login100-form validate-form" method="post"> {% csrf_token %}
 
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Please enter a Valid Input!</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+          {% if message == 0 %}
 
-    {% endif %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Please enter a Valid Input!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
 
-    <div class="form-group">
-      <label for="inputUsername">Username</label>
-      <input type="text" id="inputUsername" class="form-control" name="username" placeholder="Enter Your Username" required autofocus>
-      <small id="usernameHelp" class="form-text text-muted">Alphanumeric , _ , @ , + , . , - are allowed</small>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword">Password</label>
-      <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
-    </div>
-    <button type="submit" class="btn btn-dark">Register</button>
-    <small id="emailHelp" class="form-text text-muted">Or</small>
-    <a href="{% url 'login' %}"><button class="btn btn-primary" type="button">Sign in</button></a>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-  </form>
+          {% endif %}
+
+					<span class="login100-form-title">
+						Create new account
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid Username is required">
+            <small id="usernameHelp" class="form-text text-muted">Alphanumeric , _ , @ , + , . , - are allowed</small>
+						<label for="inputUsername" class="h-value"></label>
+						<input class="input100" type="text" name="username" placeholder="Username" id="inputUsername">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user p-t-2-25" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<label for="inputPassword" class="h-value"></label>
+						<input class="input100" type="password" name="password" placeholder="Password" id="inputPassword">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit">
+							Sign Up
+						</button>
+					</div>
+
+					<div class="text-center p-t-12">
+						<span class="txt2">
+							Forgot
+						</span>
+						<a class="txt2" href="#">
+							Username / Password ?
+						</a>
+					</div>
+
+					<div class="text-center p-t-36">
+						<a class="txt2" href="{% url 'login' %}">
+							Already have a account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	{% block script %}
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	<script src="{% static '/js/main.js' %}"></script>
+
+	{% endblock %}
+
 {% endblock %}
