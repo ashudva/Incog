@@ -1,6 +1,8 @@
+from .models import Profile
 from django import forms
 
-class PostForm(forms.ModelForm):
+
+class PostForm(forms.Form):
 
     class Meta:
         model = Post
@@ -12,6 +14,7 @@ class commentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['text']
+
 
 class ReplyForm(forms.ModelForm):
 

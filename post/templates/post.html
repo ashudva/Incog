@@ -1,0 +1,43 @@
+{% load static %}
+<div class="post-bar no-pd">
+	<div class="post_topbar">
+		<div class="usy-dt">
+			<img src={% static 'images/user.svg' %} alt="User image">
+			<div class="usy-name">
+				<h3>user_name</h3>
+				<span>3 min ago</span>
+			</div>
+		</div>
+		<div class="ed-opts">
+			<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+			<ul class="ed-options">
+				<li><a href="#" title="">Edit Post</a></li>
+				<li><a href="#" title="">Report</a></li>
+				<li><a href="#" title="">Unbid</a></li>
+				<li><a href="#" title="">Hide</a></li>
+				<li><a href="#" title="">Privacy</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="job_descp">
+		<h3>post_heading</h3>
+		<ul class="job-dt">
+		</ul>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
+		<ul class="skill-tags">
+			<li><a href="#" title="">HTML</a></li>
+		</ul>
+	</div>
+	<div class="job-status-bar">
+		<!-- <a href="#"></a>
+		<a href="#" class="like-cmt">Comment</a>
+		 -->
+		<div class="card-footer post-footer">
+				<a href="#" class="card-link"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</a>
+				<a href="#" class="card-link"><i class="far fa-comment-alt"></i> Comment</a>
+				<a href="#" class="card-link"><i class="fas fa-share"></i> Share</a>
+				<a class="views"><i class="fas fa-eye"></i> Views</a>
+		</div>
+	</div>
+{% include "comment.html" %}
+</div>

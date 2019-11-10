@@ -1,7 +1,7 @@
 from django import forms
 from post.models import Post, Comment, Reply
-from .models import Profile
 from django.contrib.auth.models import User
+from .models import Profile
 
 
 class UserRegisterForm(forms.ModelForm):

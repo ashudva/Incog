@@ -1,10 +1,11 @@
+from .forms import ProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
 
 
-def login_view(request, newcontext = {}):
+def login_view(request, newcontext={}):
     context = {"message": None}
     context.update(newcontext)
     if request.user.is_authenticated:
@@ -45,6 +46,17 @@ def signup_view(request):
 def logout_view(request):
     if request.user.is_authenticated:
         logout(request)
-        return login_view(request, newcontext = {"message": 1})
+        return login_view(request, newcontext={"message": 1})
     else:
         return redirect('login')
+
+
+def setup_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            redirect('profile')
+
+
+def profile(parameter_list):
+    pass
