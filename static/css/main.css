@@ -953,7 +953,7 @@ main {
 .post-topbar {
   float: left;
   width: 100%;
-  padding: 23px 20px;
+  padding: 8px 20px;
   background-color: #fff;
   border-top: 4px solid #24292e;
   border-left: 1px solid #e4e4e4;
@@ -5658,6 +5658,7 @@ footer {
 }
 
 textarea:focus,
+textarea[type="text"]:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="datetime"]:focus,
@@ -5673,9 +5674,10 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {   
-  border-color: rgba(104, 189, 239, 0.8);
-  box-shadow: 0.5px 0.5px 0.5px #343a40 inset, 0.5px 0.5px 0.5px #343a40;
-  outline: 0 none;
+  border-color: rgba(104, 189, 239, 0.8)!important;
+  box-shadow: 0.5px 0.5px 0.5px #343a40 inset, 0.5px 0.5px 0.5px #343a40!important;
+  outline: 0 none!important;
+  background-color: #f8f9fa!important;
 }
 
 .btn:focus,.btn:active {
@@ -5732,4 +5734,31 @@ nav ul li a {
   transition: all 0.1s ease-in;
   font-size: 19px;
   font-weight: bold;
+}
+a {
+  color: #607D8B;
+}
+
+textarea {
+    font-size: x-small!important;
+    color: inherit;
+    background-color: #495057;
+    outline: none;
+}
+
+.modal-header {
+  font-size: medium;
+  background: var(--teal);
+}
+
+.font-small {
+  font-size: small;
+}
+
+#newpost {
+  min-height: 39px;
+}
+
+.modal-body, .modal-footer {
+  background: whitesmoke;
 }
