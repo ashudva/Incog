@@ -4,8 +4,8 @@
 		<div class="usy-dt">
 			<img src={% static 'images/user.svg' %} alt="User image">
 			<div class="usy-name">
-				<h3>user_name</h3>
-				<span>3 min ago</span>
+				<h6>{{ post.author }}</h6>
+				<span>{{post.pub_date}}</span>
 			</div>
 		</div>
 		<div class="ed-opts">
@@ -13,20 +13,17 @@
 			<ul class="ed-options">
 				<li><a href="#" title="">Edit Post</a></li>
 				<li><a href="#" title="">Report</a></li>
-				<li><a href="#" title="">Unbid</a></li>
+				<li><a href="#" title="">Delete</a></li>
 				<li><a href="#" title="">Hide</a></li>
 				<li><a href="#" title="">Privacy</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="job_descp">
-		<h3>post_heading</h3>
+		<h6 class="post-heading">{{ post.heading }}</h6>
 		<ul class="job-dt">
 		</ul>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
-		<ul class="skill-tags">
-			<li><a href="#" title="">HTML</a></li>
-		</ul>
+		<p>{{ post.confession }}</p>
 	</div>
 	<div class="job-status-bar">
 		<!-- <a href="#"></a>
@@ -34,10 +31,22 @@
 		 -->
 		<div class="card-footer post-footer">
 				<a href="#" class="card-link"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like</a>
-				<a href="#" class="card-link"><i class="far fa-comment-alt"></i> Comment</a>
+				<a href="#collapseComment{{ post.id }}" class="card-link" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseComment{{ post.id }}">
+				<i class="far fa-comment-alt"></i> Comment</a>
 				<a href="#" class="card-link"><i class="fas fa-share"></i> Share</a>
 				<a class="views"><i class="fas fa-eye"></i> Views</a>
 		</div>
 	</div>
-{% include "comment.html" %}
+{% with comments=post.comment_set.all %}
+	{% if not comments is None %}
+		{% for comment in comments %}
+			{% include "comment.html" %}
+	    {% endfor %}
+	{% else %}
+	    <p class>No comments on this post</p>
+	{% endif %}
+{% endwith %}
+
+{% include "newcomment.html" %}
+
 </div>

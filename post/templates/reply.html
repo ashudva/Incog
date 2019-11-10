@@ -1,9 +1,9 @@
 {% load static %}
 <div class="body-reply">
   <div class="no-flex justify-content-start mb-4 reply">
-    <div class="msg_cotainer">
-      <i class="fas fa-user cmt-icon"></i>   Hi, how are you sam ?
-      <span class="msg_time">8:40 AM, Today <a href="">reply</a> </span>
+    <div class="msg_cotainer"> 
+      <i class="fas fa-user cmt-icon"></i>   {{reply.author}}: {{ reply.text }}
+      <span class="msg_time">{{reply.pub_date}}<a href=""> reply</a> </span>
     </div>
   </div>
 </div>

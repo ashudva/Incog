@@ -22,58 +22,7 @@ Incog
 	<div class="wrapper">
 
 		{% include "nav.html" %}
-
-		{% comment %} <header class="navbar fixed-top" id="nav-top">
-			<div class="container-fluid">
-				<div class="header-data">
-					<div class="logo">
-						<a href="index.html" title="" id="icon-text"><img
-						 src={% static 'images\logo_light.png' %} alt="Incog logo image"></a>
-					</div><!--logo end-->
-					<nav>
-						<ul>
-							<li>
-								<a href="index.html" title="">
-									<span><img class="nav-image" src={% static 'images/icon1.svg' %} alt=""></span>
-
-								</a>
-							</li>
-							<li>
-								<a href="companies.html" title="">
-									<span><img class="nav-image" src={% static 'images/icon2.svg' %} alt=""></span>
-
-								</a>
-							</li>
-
-							<li>
-								<a href="profile-account-setting.html" title="">
-									<span><img class="nav-image" src = {% static 'images/icon2.svg' %} alt=""></span>
-								</a>
-							</li>
-
-							<li>
-								<a href="#" title="" class="not-box-open">
-									<span><img class="nav-image" src={% static 'images/icon6.svg' %} alt=""></span>
-								</a>
-							</li>
-							<li>
-								<a href="#" title="" class="not-box-open">
-									<span><img class="nav-image" src={% static 'images/icon7.svg' %} alt=""></span>
-								</a>
-							</li>
-						</ul>
-
-					</nav><!--nav end-->
-          <div class="signin">
-              <div id="sign_in"><a href="login.html"><button type="button" class="btn btn-light login">Login</button></a></div>
-              <div id="sign_up"><a href="signup.html"><button type="button" class="btn btn-light login">Sign Up</button></a></div>
-          </div>
-				</div><!--header-data end-->
-			</div>
-		</header><!--header end--> {% endcomment %}
-
-
-
+		
 		<main>
 			<div class="main-section">
 				<div class="container-fluid">
@@ -89,7 +38,7 @@ Incog
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">
-												<h3>{{ profile.owner }}</h3>
+												<h3>{{ user.username }}</h3>
 												<span>{{ profile.status }}</span>
 											</div>
 										</div><!--user-profile end-->
@@ -134,12 +83,9 @@ Incog
 									</div><!--post-topbar end-->
 									<div class="posts-section">
 
+									{% for post in posts %}
 										{% include "post.html" %}
-										{% include "post.html" %}
-										{% include "post.html" %}
-										{% include "post.html" %}
-										{% include "post.html" %}
-
+									{% endfor %}
 
 										<div class="process-comm">
 											<a href="#" title=""><img src="images/process-icon.png" alt=""></a>

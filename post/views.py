@@ -9,8 +9,10 @@ from main.models import Profile
 def index_view(request):
     # Get list of all posts
     p = get_list_or_404(Post)
+    profile = Profile.objects.get(owner=request.user.id)
     context = {
-        "posts": p
+        "posts": p,
+        "profile": profile
     }
     return render(request, 'index.html', context)
 

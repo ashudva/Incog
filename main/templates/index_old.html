@@ -23,6 +23,7 @@
     <ul>
     {% for comment in post.comment_set.all %}
         <li>{{ comment }}</li>
+        <li>{{ comment.pub_date }}</li>
 
         {% if comment.reply_set.all %}
         <ul>
