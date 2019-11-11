@@ -5755,10 +5755,19 @@ textarea {
   font-size: small;
 }
 
+.font-x-small {
+  font-size: x-small;
+  padding-left: 12px;
+}
+
 #newpost {
   min-height: 39px;
 }
 
 .modal-body, .modal-footer {
   background: whitesmoke;
+}
+
+.reply-form {
+  padding-left: 50px;
 }

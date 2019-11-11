@@ -17,8 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import HttpResponseRedirect
 
 urlpatterns = [
+    # favicon.ico not found error fix for Google Chrome
+    path('favicon.ico/',
+         lambda x: HttpResponseRedirect(settings.STATIC_URL+'images/favicon.ico')),
     path('admin/', admin.site.urls),
     path('accounts/', include('main.urls')),
     path('', include('post.urls')),

@@ -3,7 +3,9 @@
   <div class="no-flex justify-content-start mb-4 reply">
     <div class="msg_cotainer"> 
       <i class="fas fa-user cmt-icon"></i>   {{reply.author}}: {{ reply.text }}
-      <span class="msg_time">{{reply.pub_date}}<a href=""> reply</a> </span>
+      <span class="msg_time">{{reply.pub_date}}<a href="#collapseReply{{ comment.id }}" data-toggle="collapse"
+            role="button" aria-expanded="false" aria-controls="#collapseReply{{ comment.id }}"> reply</a>
+      </span>
     </div>
   </div>
 </div>
