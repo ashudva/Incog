@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Comment, Reply
 from main.models import Profile
 from .forms import PostForm, CommentForm, ReplyForm
+from django.utils import timezone
 # Create your views here.
 
 
@@ -24,10 +25,17 @@ def index_view(request):
 @login_required(login_url='accounts/login/')
 def new_post(request):
     if request.method == 'POST':
-        heading = request.POST.get('heading', False)
-        confession = request.POST.get('confession', False)
-        print(heading)
-        print(confession)
+        # heading = request.POST.get('heading', False)
+        # confession = request.POST.get('confession', False)
+        # print(heading)
+        # print(confession)
+        post = PostForm(request.POST)
+        if post.is_valid():
+            heading = post.cleaned_data['heading']
+            confession = post.cleaned_data['confession']
+            p = Post(heading=heading, confession=confession,
+                     author=request.user, pub_date=timezone.now())
+            p.save()
         return redirect('index')
 
     return redirect('index')
@@ -36,8 +44,15 @@ def new_post(request):
 @login_required(login_url='accounts/login/')
 def new_comment(request):
     if request.method == 'POST':
-        comment = request.POST.get('text', False)
-        print(comment)
+        comment = CommentForm(request.POST)
+        # print(comment.text)
+        if comment.is_valid():
+            text = comment.cleaned_data['text']
+            parent_post = request.POST.get('post_id')
+            print(parent_post)
+            c = Comment(author=request.user, text=text,
+                        pub_date=timezone.now(), parent_post=parent_post)
+            c.save()
         return redirect('index')
 
     return redirect('index')
@@ -46,8 +61,14 @@ def new_comment(request):
 @login_required(login_url='accounts/login/')
 def new_reply(request):
     if request.method == 'POST':
-        reply = request.POST.get('text', False)
-        print(reply)
+        reply = ReplyForm(request.POST)
+        # print(reply)
+        if reply.is_valid():
+            text = reply.cleaned_data['text']
+            parent_comment = request.POST.get('comment_id')
+            c = Comment(author=request.user, text=text,
+                        pub_date=timezone.now(), parent_post=parent_comment)
+            c.save()
         return redirect('index')
 
     return redirect('index')

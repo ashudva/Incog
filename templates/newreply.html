@@ -9,6 +9,7 @@
         {{ reply.text.errors }}
         <input type="text" class="input-cmt form-control font-x-small" placeholder="Write your reply" 
         role="button" aria-label="collapseComment{{ comment.id }}" aria-describedby="basic-addon2" name={{ reply.text.name }}>
+        <input type="hidden" value="{{ comment.id }}" name="comment_id">
         <div class="input-group-append">
           <button class="btn btn-outline-success cmt-submit font-x-small " type="submit">Reply</button>
         </div>
