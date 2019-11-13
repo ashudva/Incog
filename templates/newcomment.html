@@ -1,8 +1,12 @@
-<form action="">
+<form action={% url 'reply' %} method="post"> {% csrf_token %}
+  {{ comment.non_field_errors }}
+  {{ comment.source.errors }}
+  {{ comment.source }}
   <div class="input-group mb-3 cmt-form collapse" id="collapseComment{{ post.id }}">
-    <label for="collapseComment{{ post.id }}"></label>
+    <label for="collapseComment{{ post.id }}" hidden>Write your comment</label>
+    {{ comment.text.errors }}
     <input type="text" class="input-cmt form-control font-x-small" placeholder="Write your comment" 
-    aria-label="collapseComment{{ post.id }}" aria-describedby="basic-addon2">
+    aria-label="collapseComment{{ post.id }}" aria-describedby="basic-addon2" name={{ comment.text.name }}>
     <div class="input-group-append">
       <button class="btn btn-outline-success cmt-submit font-x-small " type="submit">Comment</button>
     </div>

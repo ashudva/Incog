@@ -89,20 +89,24 @@ Incog
 												        </button>
 												      </div>
 												      <div class="modal-body">
-												        <form>
+												        <form action={% url 'post' %} method="post"> {% csrf_token %}
+														{{ post.non_field_errors }}
+														{{ post.source.errors }}
+														{{ post.source }}
+
 												          <div class="form-group">
-												            <label for="recipient-name" class="col-form-label">Heading</label>
-												            <input type="text" class="form-control font-small" id="recipient-name">
+												            <label for="heading" class="col-form-label">Heading</label>
+												            <input type="text" class="form-control font-small" id="heading-input" name={{ post.heading.name }}>
 												          </div>
 												          <div class="form-group">
 												            <label for="message-text" class="col-form-label font-small">Confession</label>
-												            <textarea type="text" class="form-control" id="message-text"></textarea>
+												            <textarea type="text" class="form-control" id="message-text" name={{ post.confession.name }}></textarea>
 												          </div>
+														  <div class="modal-footer">
+														  	<button type="button" class="btn btn-secondary font-small header-search-button" data-dismiss="modal">Close</button>
+														  	<button type="submit" class="btn btn-primary font-small btn-outline-success header-search-button">Create Post</button>
+														  </div>
 												        </form>
-												      </div>
-												      <div class="modal-footer">
-												        <button type="button" class="btn btn-secondary font-small header-search-button" data-dismiss="modal">Close</button>
-												        <button type="button" class="btn btn-primary font-small btn-outline-success header-search-button">Create Post</button>
 												      </div>
 												    </div>
 												  </div>
