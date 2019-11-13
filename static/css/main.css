@@ -5564,7 +5564,6 @@ footer {
   right: 155px;
   top: 6px
 }
-/*# sourceMappingURL=style.css.map */
 .views {
   float: right;
 }
@@ -5638,6 +5637,7 @@ footer {
 
 .cmt-form {
   padding: 0px 10px;
+  padding-top: 10px;
 }
 
 .input-cmt {
@@ -5771,3 +5771,21 @@ textarea {
 .reply-form {
   padding-left: 50px;
 }
+
+.input-cmt {
+  margin-bottom: 10px!important;
+}
+
+form .mb-3 {
+  margin-bottom: 0px!important;
+}
+
+.errorlist {
+  color: firebrick;
+  list-style-type: none;
+}
+
+.mb-4 {
+  margin-bottom: 1rem!important;
+}
+

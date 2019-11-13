@@ -1,23 +1,25 @@
-from .models import Profile
+from .models import Comment, Post, Reply
 from django import forms
+from django.utils import timezone
 
 
 class PostForm(forms.Form):
+    heading = forms.CharField(max_length=100)
+    confession = forms.CharField(max_length=2000)
 
-    class Meta:
-        model = Post
-        fields = ['confession', 'heading']
+    # def clean(self, request):
+    #     heading = self.cleaned_data['heading']
+    #     confession = self.cleaned_data['confession']
+    #     author = request.user.username
+    #     pub_date = timezone.now()
+
+    #     else:
+    #         return (heading, confession, author, pub_date)
 
 
-class commentForm(forms.ModelForm):
-
-    class Meta:
-        model = Comment
-        fields = ['text']
+class CommentForm(forms.Form):
+    text = forms.CharField(max_length=200)
 
 
-class ReplyForm(forms.ModelForm):
-
-    class Meta:
-        model = Reply
-        fields = ['text']
+class ReplyForm(forms.Form):
+    text = forms.CharField(max_length=200)
