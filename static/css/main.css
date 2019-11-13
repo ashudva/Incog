@@ -5637,6 +5637,7 @@ footer {
 
 .cmt-form {
   padding: 0px 10px;
+  padding-top: 10px;
 }
 
 .input-cmt {
@@ -5772,7 +5773,7 @@ textarea {
 }
 
 .input-cmt {
-  margin-bottom: 20px!important;
+  margin-bottom: 10px!important;
 }
 
 form .mb-3 {
@@ -5783,3 +5784,8 @@ form .mb-3 {
   color: firebrick;
   list-style-type: none;
 }
+
+.mb-4 {
+  margin-bottom: 1rem!important;
+}
+

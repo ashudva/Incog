@@ -37,6 +37,7 @@ class commentBase(models.Model):
 
 class Comment(commentBase):
     parent_post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    n_replies = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.id}. Comment: {self.text}, Replies: {self.n_replies}"

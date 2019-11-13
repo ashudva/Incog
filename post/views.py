@@ -10,11 +10,11 @@ from django.utils import timezone
 @login_required(login_url='accounts/login/')
 def index_view(request):
     # Get list of all posts
-    p = get_list_or_404(Post)
-    profile = Profile.objects.get(owner=request.user.id)
+    p = reversed(get_list_or_404(Post))
+    # profile = Profile.objects.get(owner=request.user.id)
     context = {
         "posts": p,
-        "profile": profile,
+        # "profile": profile,
         "post": PostForm(),
         "comment": CommentForm(),
         "reply": ReplyForm(),
@@ -25,10 +25,6 @@ def index_view(request):
 @login_required(login_url='accounts/login/')
 def new_post(request):
     if request.method == 'POST':
-        # heading = request.POST.get('heading', False)
-        # confession = request.POST.get('confession', False)
-        # print(heading)
-        # print(confession)
         post = PostForm(request.POST)
         if post.is_valid():
             heading = post.cleaned_data['heading']
@@ -48,10 +44,10 @@ def new_comment(request):
         # print(comment.text)
         if comment.is_valid():
             text = comment.cleaned_data['text']
-            parent_post = request.POST.get('post_id')
-            print(parent_post)
-            c = Comment(author=request.user, text=text,
-                        pub_date=timezone.now(), parent_post=parent_post)
+            post_id = request.POST.get('post_id')
+            parent_post = Post.objects.get(id=post_id)
+            c = Comment(author=request.user, parent_post=parent_post, text=text,
+                        pub_date=timezone.now())
             c.save()
         return redirect('index')
 
@@ -65,9 +61,10 @@ def new_reply(request):
         # print(reply)
         if reply.is_valid():
             text = reply.cleaned_data['text']
-            parent_comment = request.POST.get('comment_id')
-            c = Comment(author=request.user, text=text,
-                        pub_date=timezone.now(), parent_post=parent_comment)
+            comment_id = request.POST.get('comment_id')
+            parent_comment = Comment.objects.get(id=comment_id)
+            c = Reply(author=request.user, text=text,
+                      pub_date=timezone.now(), parent_comment=parent_comment)
             c.save()
         return redirect('index')
 
