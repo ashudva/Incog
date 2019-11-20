@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    confession = models.TextField(max_length=2000)
+    text = models.TextField(max_length=2000)
     heading = models.CharField(max_length=100)
     pub_date = models.DateTimeField('Date published')
     mod_date = models.DateField('Date modified', blank=True, null=True)
