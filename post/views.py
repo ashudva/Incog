@@ -28,8 +28,8 @@ def new_post(request):
         post = PostForm(request.POST)
         if post.is_valid():
             heading = post.cleaned_data['heading']
-            confession = post.cleaned_data['confession']
-            p = Post(heading=heading, confession=confession,
+            text = post.cleaned_data['text']
+            p = Post(heading=heading, text=text,
                      author=request.user, pub_date=timezone.now())
             p.save()
         return redirect('index')
