@@ -2,7 +2,7 @@
 <div class="body-cmt collapse" id="collapseComment{{ post.id }}">
   <div class="no-flex no-flex-top justify-content-start mb-4">
     <div class="msg_cotainer">
-      <i class="fas fa-user cmt-icon"></i>   {{ comment.author }}: {{ comment.text }}
+      <i class="fas fa-user cmt-icon"></i>   User{{ comment.author.id }}: {{ comment.text }}
       <span class="msg_time">{{ comment.pub_date }}<a href="#collapseReply{{ comment.id }}"
         data-toggle="collapse" role="button" aria-expanded="false" 
         aria-controls="#collapseReply{{ comment.id }}"> reply</a></span>
