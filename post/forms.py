@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class PostForm(forms.Form):
     heading = forms.CharField(max_length=100)
-    confession = forms.CharField(max_length=2000)
+    text = forms.CharField(max_length=2000)
 
     # def clean(self, request):
     #     heading = self.cleaned_data['heading']
